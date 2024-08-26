@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.IO.Compression;
-using System.Linq.Expressions;
-using GoalSeekNS;
+﻿using GoalSeekNS;
 
 class Program
 {

@@ -1,0 +1,30 @@
+This is my implementation for an application challenge set by Dentsu
+
+I have chosen to create a C# .NET Console application which accepts files as input.
+It parses the file with strict error handling, so the file has to be written just so.
+This arguably limits the user a bit, but for this project I wanted to focus more on correctness than user experience
+
+To build and run the project
+- be sure to have .NET and a BASH terminal
+- in the main directory type: dotnet build
+- then: dotnet run "filename"
+
+I have created some example files in the "exampleFiles" folder
+For instance you could try: dotnet run "exampleFiles/exampleA"
+Of course, you can write and try out your own files.
+examples C through E are faulty on purpose, to show how wrong input is handled.
+Other errors accounted for are: non-exsisting file, no access rights, limit 'Z' too low
+and any value below 0, because that would make no sense for budgets or agency fees.
+
+Following the subject, I have implemented the "Goal Seek" algorithm with function GoalSeeker1
+which finds the desired budget for a new ad, or new X as part of the formula, by
+incrementing towards desired max value, where all budgets combined are as close
+as possible to 'Z'
+
+However, since we are dealing with a linear function (Z=X+Y1⋅X+Y2⋅(X1+X2+X4)+HOURS)
+we can simply calculate the correct answer outright, without having to do any incremental
+or repetetive calculations. I have implemented this solution as well, with the function
+GoalSeeker2
+
+To use GoalSeeker2, run the program with: dotnet run "filename" "2"
+This is in my opinion a far better way to solve the problem given in the subject.
