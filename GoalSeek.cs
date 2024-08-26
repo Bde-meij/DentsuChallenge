@@ -40,7 +40,11 @@ namespace GoalSeekNS
         {
             // in the inital guess we take the diff of current budget and limit Z
             // whilst taking into account the effect Y1 and Y2 might have on growth
-            double initialGuess = (vars.Z - Formula(vars)) / ((1+vars.Y1)*(1+vars.Y2));
+            double growthFactor = (1+vars.Y1)*(1+vars.Y2);
+            double initialGuess = vars.Z - Formula(vars);
+            if (growthFactor != 0) // dividing by zero could potentially open a black hole
+                initialGuess = (vars.Z - Formula(vars)) / growthFactor;
+
             Console.WriteLine("started goalseeker1, initial guess is "+ initialGuess.ToString());
             double stepSize = initialGuess;
             double budget = Formula(vars);
@@ -71,10 +75,13 @@ namespace GoalSeekNS
 
             vars.X[vars.newXPos] = 1;
             double budget2 = Formula(vars);
-            
+
+            double budgetDiff = budget2 - budget1;
+            if (budgetDiff == 0) // this protection is probably not necesary
+                budgetDiff = 1;
             // we take the difference in budgets after setting 'new X' to 1
             // then immediately calculate how big 'new X' has to be to reach 'Z'
-            return (vars.Z - budget1)/(budget2 - budget1);
+            return (vars.Z - budget1)/budgetDiff;
         }
     }
 }

@@ -14,7 +14,7 @@ For instance you could try: dotnet run "exampleFiles/exampleA"
 Of course, you can write and try out your own files.
 examples C through E are faulty on purpose, to show how wrong input is handled.
 Other errors accounted for are: non-exsisting file, no access rights, limit 'Z' too low
-and any value below 0, because that would make no sense for budgets or agency fees.
+division by 0, and any value below 0, because that would make no sense for budgets or agency fees.
 
 Following the subject, I have implemented the "Goal Seek" algorithm with function GoalSeeker1
 which finds the desired budget for a new ad, or new X as part of the formula, by
